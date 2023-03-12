@@ -1,0 +1,42 @@
+Question #2
+// Write an algorithm that removes duplicates from an array. Do not use a function like filter() to solve this. Once you have solved the problem, demontrate how it can be solved with filter(). Solve the problem with and without recurrion.
+
+Example
+// Input: [7, 9, "hi", 12, "hi", 7, 53]
+// Output: [7, 9, "hi", 12, 53]
+
+// Assumptions for array inuts, i.e integers and strings, but no arrays within array.
+// Buit-in methods are okay?
+// Clarify if needed to error handle if the input array is empty or only contains 1 index
+// No need to display new array index count
+
+JavaScript:
+
+let inputArr = [7, 9, "hi", 12, "hi", 7, 53]
+
+const removeDupes = (inputArr) => { // starting with using arrow notation to create function
+  let outPut = [];                   // instatiates a new empty array
+
+  if(Array.isArray(inputArr) === false || inputArr === null){
+    return "Invalid input";
+  } else{
+    inputArr.forEach(element => {        // forEach loops through the input array
+      if((outPut.indexOf(element)) !== (inputArr.indexOf(element))) {   // if statement checks each index of new array using .indexOf method to the original array and pushes all non matching character
+        outPut.push(element);
+      }
+    });
+  }
+  return outPut;                    // returns the new non duplicate array
+}
+
+// With filter() method
+
+let inputArr = [7, 9, "hi", 12, "hi", 7, 53];
+
+const removeDupes = (inputArr) => {
+  let filtered = inputArr.filter(function(x, index){
+    return inputArr.indexOf(x) === index;
+  });
+  return filtered;
+}
+

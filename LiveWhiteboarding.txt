@@ -1,0 +1,27 @@
+// Check for uniqueness
+// Inputs a string
+// outputs a bool
+// no array methods
+// Inputs: "hello";
+// Output: false;
+// Input: "sad";
+// Output: true;
+
+// no array array methods like .map() .filter() ect.
+// assume inputs are only letters
+
+Code:
+
+const uniqueStr = (str) => {
+  let output = "";
+
+  for (let i = 0; i < str.length; i++){
+    if(!output.includes(str[i])) {
+      output += str[i];
+    }
+  }
+  return output === str;
+}
+
+uniqueStr("hello");
+uniqueStr("sad");

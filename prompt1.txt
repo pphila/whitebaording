@@ -1,0 +1,116 @@
+Question #1: Turning Strings into URLs
+// URLs cannont have spaces. Instead, all spaces in a string are replaced with %20. Write an algorithm that replaces all spaces in a string with %20.
+
+// You may not use the replace() method or regular expressions to solve this problem. Solve the problem with and without recursion.
+
+// Example:
+// Input: "Jasmine Ann Jones"
+// Output: "Jasmine%20Ann%20Jones"
+
+//Questions
+
+// Specify language
+// Argument Assumptions
+// spacedoubling?
+// length of string input?
+// built in methods?
+
+// Code
+
+C#
+
+using System;
+
+class WhiteBoarding
+{
+  static int MAX = 1000;
+
+  static char[] replaceSpaces(char[] str)
+  {
+    // count spaces and find current length
+    int spaceCount = 0, i = 0;
+    for (i = 0; i < str.Length; i++)
+      if (str[i] == " ")
+        spaceCount++;
+    
+    // while loop to count spaces and find current length
+    while (str[i-1] == " ")
+    {
+      spaceCount--;
+      i--;
+    }
+
+    // finds the new length
+    int newLength = i + spaceCount * 2;
+
+    // new length must be smaller than length of string provided
+    if (newLength > MAX)
+      return str;
+
+    // Start filling characters from end
+
+    int index = newLength -1; 
+    char[] newStr = str;
+    str = new char[newLength];
+
+    // Fill rest of the string from end
+    for (int j = i -1; j >= 0; j--)
+    {
+      //inserts %20 into spaces index
+      if (newStr[j] == " ")
+      {
+        str[index] = "0";
+        str[index - 1] = "2";
+        str[index - 2] = "%'";
+        index = index - 3;
+      }
+      else
+      {
+        str[index] = newStr[j];
+        index--;
+      }
+    }
+    return str;
+  }
+
+  // Driver
+  public static void Main(string[] args)
+  {
+    char str = "Jasmine Ann Jones";
+
+    str = replaceSpaces(str);
+    
+    for (int i = 0; i < str.Length; i++)
+    console.Writeline(str[i]);
+  }
+}
+
+JavaScript
+
+// recursive
+
+const replaceSpaces = (str) => {    // pass in a string as an argument
+  let stringOutput = [];            // instatiates an empty array
+
+  if(typeof str !== "string"){ // handle when input is not a string
+    return "Enter a valid string";
+  } else {
+    for (i = 0; i < str.length; i++) { // for loop to iterate across the inputted string
+      if(str[i] === " ") {
+        stringOutput.push("%20"); // finds every empty space and pushes '%20' into that new array at index
+      } else {
+        stringOutput.push(str[i]); // iterates accross and continues
+      }
+    }
+    return stringOutput.join(''); // takes all contents of the new array and concatenates them into the a new string
+  }
+}
+
+
+// Nonrecursive
+
+const replaceSpaces = (str) => {
+  const userArr = str.split(" ");
+  const output = userArr.join("%20");
+  return output;
+}

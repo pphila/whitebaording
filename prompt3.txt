@@ -1,0 +1,40 @@
+Question #3
+
+// Write an algorithm that takes a string with repeated characters and compress them, using a number to show how many times the repeated character has been compressed. For instance aaa should be written as 3a. Solve the problem with and without recursion.
+
+// Example:
+// Input: aaabccdddda"
+// Output: "3ab2c4da"
+
+// are all of the inputs letters, should I account for integers as well?
+// numbers come before the letter always
+// each consecutively repeating letter counts as 1 instance?
+// output them in the same oder?
+
+Code:
+
+const compress = (str) => {
+  let outPut = "";                // instatiates new empty string
+  let currentChar = str[0];       // sets current character of array at index 0
+  let count = 1;                  // sets letter count to 1
+
+  for (let i = 1; i < str.length; i++) {    // for loop sets index to 1, if index number is less than string length, increment across by 1
+    if (str[i] === currentChar) {             // if string at current index matches, increment counter by 1
+      count ++;
+    } else if (count > 1) {                   
+      outPut += count + currentChar;          // if count is greater than 1, set outPut string count and current character
+      currentChar = str[i];                // sets currentChar to equal string index
+      count = 1;                              // sets count to 1
+    } else {
+      outPut += currentChar;
+      currentChar = str[i];
+    }
+  }
+  
+  if(count === 1) {
+    outPut += currentChar;
+  } else {
+    outPut += count + currentChar;
+  }
+  return outPut;
+}

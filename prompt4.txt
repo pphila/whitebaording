@@ -1,0 +1,29 @@
+Question #4
+
+// Write an algorithm that determinies whether all the elements in a string are unique. You may not convert the string into an array or use array methods to solve this problem. The algorithm should return a boolean.
+
+// Example:
+// Input: "hello";
+// Output: : false;
+// Input: "copyright";
+// Output: "true;
+
+// Only output bool?
+// no array methods?
+// input strings will only deal with letters and not numbers
+
+Code:
+
+const uniqueStr = (str) => {
+  let output = "";
+
+  for (let i = 0; i < str.length; i++) {        // starts loop through the input string to check characters
+    if(!output.includes(str[i])) {    // compares characters in the string, returns false if there are any matches
+      output += str[i]             // pushes to output
+    }
+  }
+  return output === str;
+}
+
+console.log(uniqueStr("hello"));
+console.log(uniqueStr("copyright"));
